@@ -50,4 +50,11 @@ class User extends Authenticatable
 
         $this->roles()->sync($role, false);
     }
+
+    public function permissions()
+    {
+        return $this->roles
+            ->map->permissions
+            ->flatten()->pluck('name')->unique();
+    }
 }
